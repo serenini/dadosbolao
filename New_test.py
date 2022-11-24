@@ -26,7 +26,7 @@ st.set_page_config(layout="wide")
 
 st.markdown("## Palpites da galera")   ## Main Title
 
-################# Scatter Chart Logic #################
+################# Plot #################
 
 st.sidebar.markdown("### Selecione a pelada desejada")
 
