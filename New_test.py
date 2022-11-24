@@ -12,11 +12,11 @@ import matplotlib.pyplot as plt
 import warnings
 warnings.filterwarnings('ignore')
 ####### Load Dataset #####################
-bets=pd.read_csv('bets.csv', index_col='id')
-matches=pd.read_csv('matches.csv', nrows=48)
+bets=pd.read_csv('https://raw.githubusercontent.com/serenini/dadosbolao/main/bets.csv', index_col='id')
+matches=pd.read_csv('https://raw.githubusercontent.com/serenini/dadosbolao/main/matches.csv', nrows=48)
 bets['score']=bets['HomeTeamScore'].astype('str')+"x"+bets['AwayTeamScore'].astype('str')
 matches['match']=matches['MatchNumber'].astype(str)+"-"+matches['HomeTeam']+ " x "+matches['AwayTeam']
-completo=pd.read_csv('users_completo.csv')
+completo=pd.read_csv('https://raw.githubusercontent.com/serenini/dadosbolao/main/users_completo.csv')
 bets=pd.merge(bets, completo, left_on='punter_username',right_on='username', how='left')
 bets=bets[['id','game_number', 'HomeTeamScore', 'AwayTeamScore', 'punter_username',
         'name','score' ]]
