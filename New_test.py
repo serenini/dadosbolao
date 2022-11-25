@@ -52,6 +52,7 @@ ax=sns.countplot(x=bets_selected['Placar'], color='red',edgecolor='blue', order=
 ax.bar_label(ax.containers[0])
 plt.xlabel('Placar')
 plt.ylabel('Número de apostas')
+plt.title (Jogo)
 
 ##################### Layout Application ##################
 
