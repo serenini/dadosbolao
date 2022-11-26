@@ -29,7 +29,7 @@ bets=bets[['id','game_number', 'HomeTeamScore', 'AwayTeamScore', 'punter_usernam
 bets.rename(columns={"name": "Nome", "score": "Placar"}, inplace=True)
 
 ########################################################
-st.set_page_config(layout="wide")
+st.set_page_config(layout="wide",initial_sidebar_state="expanded")
 
 st.markdown("## Palpites da galera")   ## Main Title
 
