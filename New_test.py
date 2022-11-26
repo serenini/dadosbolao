@@ -33,7 +33,10 @@ st.set_page_config(layout="wide")
 
 st.markdown("## Palpites da galera")   ## Main Title
 Jogo = st.selectbox("Selecione a pelada desejada", ['0']+matches['match'].to_list())
-game_selected=matches[matches['match']==Jogo]['MatchNumber'].tolist()
+if Jogo=="0":
+    game_selected="1-Qatar x Ecuador"
+    else:
+        game_selected=matches[matches['match']==Jogo]['MatchNumber'].tolist()
 bets_selected=bets[bets['game_number']==game_selected[0]]
 #################################################################
 bar_fig=plt.figure(figsize=(8,4))
