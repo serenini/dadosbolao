@@ -29,23 +29,12 @@ bets=bets[['id','game_number', 'HomeTeamScore', 'AwayTeamScore', 'punter_usernam
 bets.rename(columns={"name": "Nome", "score": "Placar"}, inplace=True)
 
 ########################################################
-st.set_page_config(layout="wide",initial_sidebar_state="expanded")
+st.set_page_config(layout="wide")
 
 st.markdown("## Palpites da galera")   ## Main Title
-
-################# Scatter Chart Logic #################
-
-st.sidebar.markdown("### Selecione a pelada desejada")
-
-
-Jogo = st.sidebar.selectbox("Jogo", matches['match'].to_list())
+Jogo = st.selectbox("Selecione a pelada desejada", matches['match'].to_list())
 game_selected=matches[matches['match']==Jogo]['MatchNumber'].tolist()
 bets_selected=bets[bets['game_number']==game_selected[0]]
-st.sidebar.markdown("### Filtre o placar pra dar aquela secada")
-Placar_selecionado = st.sidebar.selectbox("Placar", ["TODOS"]+bets_selected.sort_values('Placar')['Placar'].unique().tolist())
-st.sidebar.markdown("### Filtrar por liga")
-liga_selecionada = st.sidebar.selectbox("Liga", list(ligas['name']))
-
 #################################################################
 bar_fig=plt.figure(figsize=(8,4))
 ax=sns.countplot(x=bets_selected['Placar'], color='red',edgecolor='blue', order=bets_selected['Placar'].value_counts().index)
@@ -53,30 +42,17 @@ ax.bar_label(ax.containers[0])
 plt.xlabel('Placar')
 plt.ylabel('Número de apostas')
 plt.title (Jogo)
-
-##################### Layout Application ##################
-
-container1 = st.container()
-with container1:
-    bar_fig
-    st.markdown('## Quem tá cravando?')
-    
-    
-
-
-# In[25]:
-
-
+bar_fig
+#################################################################
+st.markdown("#### Filtre o placar pra vem quem tá cravando")
+Placar_selecionado = st.selectbox("Placar", ["TODOS"]+bets_selected.sort_values('Placar')['Placar'].unique().tolist())
+st.markdown("### Filtre por liga e ligue o secador")
+liga_selecionada = st.selectbox("Liga", list(ligas['name']))
+#################################################################
 bets_selected=bets_selected[bets_selected['id'].isin(leagues[liga_selecionada]['id'])]
 if Placar_selecionado=="TODOS":
     bets_selected_2=bets_selected
 else:
     bets_selected_2=bets_selected[bets_selected['Placar']==Placar_selecionado]
 bets_selected_2[['Nome','Placar']]
-
-
-# In[ ]:
-
-
-#traduzir jogos filtrar por liga
 
