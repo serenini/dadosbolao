@@ -32,7 +32,7 @@ bets.rename(columns={"name": "Nome", "score": "Placar"}, inplace=True)
 st.set_page_config(layout="wide")
 
 st.markdown("## Palpites da galera")   ## Main Title
-Jogo = st.selectbox("Selecione a pelada desejada", matches['match'].to_list())
+Jogo = st.selectbox("Selecione a pelada desejada", ['0']+matches['match'].to_list())
 game_selected=matches[matches['match']==Jogo]['MatchNumber'].tolist()
 bets_selected=bets[bets['game_number']==game_selected[0]]
 #################################################################
@@ -42,6 +42,8 @@ ax.bar_label(ax.containers[0])
 plt.xlabel('Placar')
 plt.ylabel('Número de apostas')
 plt.title (Jogo)
+if Jogo==0:
+    bar_fig=0        
 bar_fig
 #################################################################
 st.markdown("#### Filtre o placar pra vem quem tá cravando")
