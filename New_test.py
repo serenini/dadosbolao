@@ -42,7 +42,7 @@ ax.bar_label(ax.containers[0])
 plt.xlabel('Placar')
 plt.ylabel('Número de apostas')
 plt.title (Jogo)
-if Jogo==0:
+if Jogo=="0":
     bar_fig=st.markdown(" ")
 bar_fig
 #################################################################
