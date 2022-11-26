@@ -39,15 +39,16 @@ else:
     game_selected=matches[matches['match']==Jogo]['MatchNumber'].tolist()
 bets_selected=bets[bets['game_number']==game_selected[0]]
 #################################################################
-bar_fig=plt.figure(figsize=(8,4))
-ax=sns.countplot(x=bets_selected['Placar'], color='red',edgecolor='blue', order=bets_selected['Placar'].value_counts().index)
-ax.bar_label(ax.containers[0])
-plt.xlabel('Placar')
-plt.ylabel('Número de apostas')
-plt.title (Jogo)
 if Jogo=="0":
-    bar_fig=st.markdown(" ")
-bar_fig
+    st.markdown(" ")
+else:
+    bar_fig=plt.figure(figsize=(8,4))
+    ax=sns.countplot(x=bets_selected['Placar'], color='red',edgecolor='blue', order=bets_selected['Placar'].value_counts().index)
+    ax.bar_label(ax.containers[0])
+    plt.xlabel('Placar')
+    plt.ylabel('Número de apostas')
+    plt.title (Jogo)
+    bar_fig
 #################################################################
 st.markdown("#### Filtre o placar pra vem quem tá cravando")
 Placar_selecionado = st.selectbox("Placar", ["TODOS"]+bets_selected.sort_values('Placar')['Placar'].unique().tolist())
