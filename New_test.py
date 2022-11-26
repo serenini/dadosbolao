@@ -14,7 +14,7 @@ warnings.filterwarnings('ignore')
 ####### Load Dataset #####################
 bets=pd.read_csv('bets.csv', index_col='id')
 matches=pd.read_csv('matches.csv', nrows=48)
-completo=pd.read_csv('users_completo.csv')
+completo=pd.read_json("http://vaiteqatar.online:8000/users")
 ligas=pd.read_json("http://vaiteqatar.online:8000/bet_groups")
 leagues={}
 for i in range(len(ligas)):
