@@ -48,7 +48,7 @@ else:
     plt.xlabel('Placar')
     plt.ylabel('Número de apostas')
     plt.title (Jogo)
-    st.dataframe(bar_fig, use_container_width=True) 
+    st.dataframe(data=bar_fig, use_container_width=True) 
 #################################################################
 st.markdown("#### Filtre o placar pra vem quem tá cravando")
 Placar_selecionado = st.selectbox("Placar", ["TODOS"]+bets_selected.sort_values('Placar')['Placar'].unique().tolist())
