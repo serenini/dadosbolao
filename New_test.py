@@ -11,7 +11,6 @@ import matplotlib.pyplot as plt
 import warnings
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-from ipywidgets import interact, interactive, fixed, interact_manual
 warnings.filterwarnings('ignore')
 #########FUNCTION TO GET DATA FROM GOOGLE SHEETS API################
 def get_game_scores_df():
