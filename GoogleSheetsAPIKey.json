@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "getgamescores",
+  "private_key_id": "53b8930077df774410dda66d1e59d82e928fb1bc",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDZoKqXg6pesYeK\nK8YpJTd8qQvAX+L44qHhntT0kwon0amT3wgbRSRXeyonF/P1gV0sMYQ6syrHHipD\nPkfvS3VWjkDtjD++Exxi7Z6I9BcN2llLwTI/4gpuo9fCNu/eW39k482BfPQGm7q9\nFoZgoAyC29GsByI3bQseHrXf0HKy7pz0Yhmiw/YQA6ckcaW6otGgXgGxRP6zq5hu\nNkNP1+5LIqjCS+qqvoqBJZDuSN/MAn3yW40OZXyQ7IlFMCpvZEdoug0SzEHAmqvD\noICr2iy20xzdL1yCSmSEpEYB04YX7ONZbsabyry9HrWIRKkFKb3ZLxQ87LGmQSRa\nIdiSUmL7AgMBAAECggEABrPguM4WgUyoz4+cTohKFpDl7XwMXCuiXl6lf9+YkJE1\nt2KkTy8RVe0k502yX7qEKXmmCHhtdgojKdBLhOF+iB94NzAGKdTzk66c8F6zc8xo\nnDLGcD1vLheI1P9Jy25m5iOTckxU/1jssm66tmr0l7Cg8nUmJughrIbPP71X4NQk\nuaTxKBRP/oLAb5HQ7t4lGylWShUrXDtLWODe6O/k8oiuLwE4pQ7lT1C3cfrso/tu\nfiw8viykdpX8hFowLcxue68EZAT82tp+kUt5YtWZckrp81yA9Vr5KiFHdU7BIHZP\n6EnOGuIpf0MWNHVgsutHT339A+xg9ZnYJz1Jckv0CQKBgQDsuuNJKEHk4nYL9sAZ\nJ4g6WGS+zPiuM9C3O2CG86sm5ZSIWlZPAkRU2rlGSbM4GHSFLoP/tuBW7P3jJiZ1\nuK7uLBOlcphx/zuchq2kX1Lw5u53+bIiT4+urSaC8nLnD/jSPBVw5feiCheSTJWu\n2MomD9+E5TCGe0ESLQNfAYlE7QKBgQDrV7YmHtfLbrfb2A0x3L9YlqHx/Ylj41s6\nJFZPcA3qkQNCxU/3flYBQRI6Cyp/W7uvfAtj2dc0qHPdXVBo1i1OJ01fV7YpjEEq\noxB5s5up6flvtkqsiSTEKREzqwc1dU499ZKK8vUO08qLyXZ+uAb9lDk1SCGRCbEo\nDKzu1QPyhwKBgGZ9y2WjDlRgT6eCX00EtpA8MPICoDAbsuOBy5rh6Fngz9vw8Kko\nXBk40TpDMlq5C8mViASwUpSP6qPron8ZRHNNlfvtj17bmB1+mbMuqiQud1RuQNdm\nBtkjkibjfSfY3Gt5I/dLOVlocSggDDY1GeA8wxMwfz/aISQTZQA/FAVJAoGBAIDS\nuHBRfcprxtTehQqATXWOrwMpx6UX9P30mhJNwjBeRKyuGUHes/FnzzRanF6utiQv\nAIUd34GBnDrWM4fPhWk8dkv0VVCU568RJ5mWyWTPIK0X2fRr9eYynKnturp2hefA\nnwDUUXRWVo8CLoza62ivVEloPIeKCKFlntv1Wn3NAoGBAIJ9sZaHz+oJZds6MqjW\nl/VU8TwZAYlh2bpLhDwjRWU1wENWD0KmT7n4NwenKNtG5BJv+M0DDi70HEzptr/K\nDHDtCKYN3kFCn+stQFqClVhhZbVDLrLMy8veOye1pbaTqATu+1lDnnN3wmnejK6U\niQGGUUCA61BLx+cGYYxw4mEm\n-----END PRIVATE KEY-----\n",
+  "client_email": "vaiteqatar@getgamescores.iam.gserviceaccount.com",
+  "client_id": "107924594521311691151",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/vaiteqatar%40getgamescores.iam.gserviceaccount.com"
+}
