@@ -33,18 +33,19 @@ bets=bets[['id','game_number', 'HomeTeamScore', 'AwayTeamScore', 'punter_usernam
 bets.rename(columns={"name": "Nome"}, inplace=True)
 bets=pd.merge(bets,scores, left_on='game_number', right_on='MatchNumber', how='left')
 bets.drop('MatchNumber', axis=1, inplace=True)
-bets['Resultado']=bets['HomeTeamResult'].astype(int).astype('str')+"x"+bets['AwayTeamResult'].astype(int).astype('str')
-bets['Jogo']=bets['HomeTeam']+" x "+bets['AwayTeam']
-bets['points']=0
-bets=bets[['id','Nome','Jogo', 'game_number', 'HomeTeamScore', 'AwayTeamScore',
+bets2=bets[bets['HomeTeamResult'].notna()]
+bets2['Resultado']=bets['HomeTeamResult'].astype(int).astype('str')+"x"+bets['AwayTeamResult'].astype(int).astype('str')
+bets2['Jogo']=bets['HomeTeam']+" x "+bets['AwayTeam']
+bets2['points']=0
+bets2=bets2[['id','Nome','Jogo', 'game_number', 'HomeTeamScore', 'AwayTeamScore',
        'punter_username',  'Aposta', 'HomeTeamResult', 'AwayTeamResult',
        'HomeTeam', 'AwayTeam', 'Resultado',  'points']]
-bets.loc[bets['AwayTeamResult'].isnull(),'points']=np.NaN #
-bets.loc[(bets['HomeTeamScore']>bets['AwayTeamScore'])&(bets['HomeTeamResult']>bets['AwayTeamResult']), 'points']=1
-bets.loc[(bets['HomeTeamScore']<bets['AwayTeamScore'])&(bets['HomeTeamResult']<bets['AwayTeamResult']), 'points']=1
-bets.loc[(bets['HomeTeamScore']==bets['AwayTeamScore'])&(bets['HomeTeamResult']==bets['AwayTeamResult']), 'points']=1
-bets.loc[(bets['HomeTeamScore']==bets['HomeTeamResult'])&(bets['AwayTeamScore']==bets['AwayTeamResult']), 'points']=3
-bets['Pontuação']=bets['points'].astype(int).astype('str')
+bets2.loc[bets['AwayTeamResult'].isnull(),'points']=np.NaN #
+bets2.loc[(bets['HomeTeamScore']>bets['AwayTeamScore'])&(bets['HomeTeamResult']>bets['AwayTeamResult']), 'points']=1
+bets2.loc[(bets['HomeTeamScore']<bets['AwayTeamScore'])&(bets['HomeTeamResult']<bets['AwayTeamResult']), 'points']=1
+bets2.loc[(bets['HomeTeamScore']==bets['AwayTeamScore'])&(bets['HomeTeamResult']==bets['AwayTeamResult']), 'points']=1
+bets2.loc[(bets['HomeTeamScore']==bets['HomeTeamResult'])&(bets['AwayTeamScore']==bets['AwayTeamResult']), 'points']=3
+bets2['Pontuação']=bets2['points'].astype(int).astype('str')
 
 ###############################################################
 def HIGHLIGHT(row):
@@ -95,7 +96,7 @@ with tab_grafico:
     st.dataframe(data=bets_selected_2[['Nome','Aposta']],use_container_width=True) 
 ###############################################################
 with tab_individual:
-    nome_jogador = st.selectbox("Apostador", bets.sort_values('Nome')['Nome'].unique().tolist())
-    bets_name=bets[bets['Nome']==nome_jogador][['Jogo','Aposta','Resultado','Pontuação']]
+    nome_jogador = st.selectbox("Apostador", bets2.sort_values('Nome')['Nome'].unique().tolist())
+    bets_name=bets2[bets2['Nome']==nome_jogador][['Jogo','Aposta','Resultado','Pontuação']]
     bets_name_style=bets_name.style.apply(HIGHLIGHT, subset=[ 'Pontuação'], axis=1).set_properties(**{'text-align': 'center'})
     st.dataframe(data=bets_name_style.hide_index(),use_container_width=True)
