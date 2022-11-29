@@ -96,7 +96,6 @@ with tab_grafico:
 ###############################################################
 with tab_individual:
     nome_jogador = st.selectbox("Apostador", bets.sort_values('Nome')['Nome'].unique().tolist())
-    bets=bets[bets['HomeTeamResult'].notna()]
     bets_name=bets[bets['Nome']==nome_jogador][['Jogo','Aposta','Resultado','Pontuação']]
     bets_name_style=bets_name.style.apply(HIGHLIGHT, subset=[ 'Pontuação'], axis=1).set_properties(**{'text-align': 'center'})
     st.dataframe(data=bets_name_style.hide_index(),use_container_width=True)
