@@ -34,17 +34,17 @@ bets.rename(columns={"name": "Nome"}, inplace=True)
 bets=pd.merge(bets,scores, left_on='game_number', right_on='MatchNumber', how='left')
 bets.drop('MatchNumber', axis=1, inplace=True)
 bets2=bets[bets['HomeTeamResult'].notna()]
-bets2['Resultado']=bets['HomeTeamResult'].astype(int).astype('str')+"x"+bets['AwayTeamResult'].astype(int).astype('str')
-bets2['Jogo']=bets['HomeTeam']+" x "+bets['AwayTeam']
+bets2['Resultado']=bets2['HomeTeamResult'].astype(int).astype('str')+"x"+bets2['AwayTeamResult'].astype(int).astype('str')
+bets2['Jogo']=bets2['HomeTeam']+" x "+bets2['AwayTeam']
 bets2['points']=0
 bets2=bets2[['id','Nome','Jogo', 'game_number', 'HomeTeamScore', 'AwayTeamScore',
        'punter_username',  'Aposta', 'HomeTeamResult', 'AwayTeamResult',
        'HomeTeam', 'AwayTeam', 'Resultado',  'points']]
-bets2.loc[bets['AwayTeamResult'].isnull(),'points']=np.NaN #
-bets2.loc[(bets['HomeTeamScore']>bets['AwayTeamScore'])&(bets['HomeTeamResult']>bets['AwayTeamResult']), 'points']=1
-bets2.loc[(bets['HomeTeamScore']<bets['AwayTeamScore'])&(bets['HomeTeamResult']<bets['AwayTeamResult']), 'points']=1
-bets2.loc[(bets['HomeTeamScore']==bets['AwayTeamScore'])&(bets['HomeTeamResult']==bets['AwayTeamResult']), 'points']=1
-bets2.loc[(bets['HomeTeamScore']==bets['HomeTeamResult'])&(bets['AwayTeamScore']==bets['AwayTeamResult']), 'points']=3
+bets2.loc[bets2['AwayTeamResult'].isnull(),'points']=np.NaN #
+bets2.loc[(bets2['HomeTeamScore']>bets2['AwayTeamScore'])&(bets2['HomeTeamResult']>bets2['AwayTeamResult']), 'points']=1
+bets2.loc[(bets2['HomeTeamScore']<bets2['AwayTeamScore'])&(bets2['HomeTeamResult']<bets2['AwayTeamResult']), 'points']=1
+bets2.loc[(bets2['HomeTeamScore']==bets2['AwayTeamScore'])&(bets2['HomeTeamResult']==bets2['AwayTeamResult']), 'points']=1
+bets2.loc[(bets2['HomeTeamScore']==bets2['HomeTeamResult'])&(bets2['AwayTeamScore']==bets2['AwayTeamResult']), 'points']=3
 bets2['Pontuação']=bets2['points'].astype(int).astype('str')
 
 ###############################################################
