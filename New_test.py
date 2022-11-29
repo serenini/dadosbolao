@@ -93,7 +93,7 @@ with tab_grafico:
         bets_selected_2=bets_selected
     else:
         bets_selected_2=bets_selected[bets_selected['Aposta']==Aposta_selecionado]
-    st.dataframe(data=bets_selected_2[['Nome','Aposta']]) 
+    st.dataframe(data=bets_selected_2[['Nome','Aposta']],use_container_width=True) 
 ###############################################################
 with tab_individual:
     nome_jogador = st.selectbox("Apostador", bets.sort_values('Nome')['Nome'].unique().tolist())
