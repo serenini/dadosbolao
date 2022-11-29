@@ -84,7 +84,7 @@ tab_grafico, tab_individual= st.tabs(["Análise por jogo", "Seus Palpites"])
 
 with tab_grafico:
     
-    Jogo = st.selectbox("Selecione a pelada desejada", "0"+matches['match'].to_list())
+    Jogo = st.selectbox("Selecione a pelada desejada", ["0"]+matches['match'].to_list())
     if Jogo=="0":
         game_selected=matches[matches['match']=="1-Qatar x Ecuador"]['MatchNumber'].tolist()
     else:
