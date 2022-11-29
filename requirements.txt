@@ -4,3 +4,4 @@ streamlit
 matplotlib==3.6.2
 numpy
 gspread-pandas
+oauth2client
