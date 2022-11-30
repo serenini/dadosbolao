@@ -133,16 +133,16 @@ with tab_evolucao:
             ponto=Ranking_parcial.at[j,'points']
             A.at[j, i-1]=ponto
     lista_seleção=st.multiselect(label='Marque os nomes',options=list(A['Nome']))
-    list_names=[]
-    for i in lista_seleção:
-        list_names.append(list(A['Nome']).index(i))
-    fig_1=plt.figure(figsize=(10,7))
-    a=-1
-    for i in list_names:
-        a=a+1
-        plt.plot(A.iloc[i][1:], label=lista_seleção[a])
-    plt.xlabel('Jogos decorridos')
-    plt.ylabel('Pontos')
-    plt.title('Evolução dos pontos')
-    plt.legend()
-    fig_1
+    #list_names=[]
+    #for i in lista_seleção:
+    #    list_names.append(list(A['Nome']).index(i))
+    #fig_1=plt.figure(figsize=(10,7))
+    #a=-1
+    #for i in list_names:
+    #    a=a+1
+    #    plt.plot(A.iloc[i][1:], label=lista_seleção[a])
+    #plt.xlabel('Jogos decorridos')
+    #plt.ylabel('Pontos')
+    #plt.title('Evolução dos pontos')
+    #plt.legend()
+    #fig_1
