@@ -80,7 +80,7 @@ st.set_page_config(layout="wide")
 
 st.markdown("## Palpites da galera")   ## Main Title
 
-tab_grafico, tab_individual= st.tabs(["Análise por jogo", "Seus Palpites"])
+tab_grafico, tab_individual, tab_evolucao= st.tabs(["Palpites Galera", "Seus Palpites", "Gráficos"])
 ###############################################################
 
 with tab_grafico:
@@ -120,3 +120,29 @@ with tab_individual:
     bets_name=bets2[bets2['Nome']==nome_jogador][['Jogo','Aposta','Resultado','Pontuação']]
     bets_name_style=bets_name.style.apply(HIGHLIGHT, subset=[ 'Pontuação'], axis=1).set_properties(**{'text-align': 'center'})
     st.dataframe(data=bets_name_style.hide_index(),use_container_width=True)
+#################################################################
+with tab_evolucao:
+    #Pontuação por rodada
+    total_jogos=len(bets2['Jogo'].unique())
+    A=pd.DataFrame(columns=range(total_jogos))
+    A.rename(columns={0:'Nome'}, inplace=True)
+    A['Nome']=bets2.sort_values('Nome')['Nome'].unique()
+    for i in range (2,total_jogos+1):
+        Ranking_parcial=bets2[bets2['game_number']<i].groupby('Nome').sum().sort_values('Nome').reset_index()[['Nome','points']]
+        for j in range(len(Ranking_parcial)):
+            ponto=Ranking_parcial.at[j,'points']
+            A.at[j, i-1]=ponto
+    lista_seleção=st.multiselect(label='Marque os nomes',options=list(A['Nome']))
+    list_names=[]
+    for i in lista_seleção:
+        list_names.append(list(A['Nome']).index(i))
+    fig_1=plt.figure(figsize=(10,7))
+    a=-1
+    for i in list_names:
+        a=a+1
+        plt.plot(A.iloc[i][1:], label=lista_seleção[a])
+    plt.xlabel('Jogos decorridos')
+    plt.ylabel('Pontos')
+    plt.title('Evolução dos pontos')
+    plt.legend()
+    fig_1
