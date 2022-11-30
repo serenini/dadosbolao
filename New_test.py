@@ -136,7 +136,7 @@ with tab_evolucao:
     list_names=[]
     for i in lista_seleção:
         list_names.append(list(A['Nome']).index(i))
-    fig_1=plt.figure(figsize=(10,7))
+    fig_1=plt.figure(figsize=(7,4))
     a=-1
     for i in list_names:
         a=a+1
