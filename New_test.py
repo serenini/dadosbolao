@@ -37,6 +37,7 @@ for i in range(len(ligas)):
 
 ################## Manipulate datasets######################
 
+completo["name"] = completo["name"].str.title()
 scores.rename(columns={'HomeTeamScore':'HomeTeamResult','AwayTeamScore':'AwayTeamResult'}, inplace=True)
 bets['Aposta']=bets['HomeTeamScore'].astype('str')+"x"+bets['AwayTeamScore'].astype('str')
 matches['match']=matches['MatchNumber'].astype(str)+"-"+matches['HomeTeam']+ " x "+matches['AwayTeam']
