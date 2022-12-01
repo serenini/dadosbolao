@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 import warnings
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+from st_aggrid import GridOptionsBuilder, AgGrid, GridUpdateMode, DataReturnMode
 warnings.filterwarnings('ignore')
 #########FUNCTION TO GET DATA FROM GOOGLE SHEETS API################
 def get_game_scores_df():
@@ -80,7 +81,7 @@ st.set_page_config(layout="wide")
 
 st.markdown("## Palpites da galera")   ## Main Title
 
-tab_grafico, tab_individual, tab_evolucao= st.tabs(["Palpites Galera", "Seus Palpites", "Gráficos"])
+tab_grafico, tab_individual, tab_evolucao, tab_sim= st.tabs(["Palpites Galera", "Seus Palpites", "Gráficos", "Simulador"])
 ###############################################################
 
 with tab_grafico:
@@ -146,3 +147,34 @@ with tab_evolucao:
     plt.title('Evolução dos pontos')
     plt.legend()
     fig_1
+###############################################################
+with tab_sim:
+    col1, col2 = st.columns(2)
+    with col1:
+        scores.rename(columns={'MatchNumber':'Jogo', 'HomeTeamResult':'GolsA', 'AwayTeamResult':'GolsB'}, inplace=True)
+        grid_table=AgGrid(scores[['Jogo','HomeTeam', 'GolsA', 'GolsB', 'AwayTeam']],fit_columns_on_grid_load = True,editable=True)
+        df=grid_table['data']
+        
+    with col2:
+        df=df.astype(str)
+        df.replace("","10", inplace=True)
+        df.replace(" ","10", inplace=True)
+        df['Jogo']=df['Jogo'].astype(int)
+        df['GolsB']=df['GolsB'].astype(int)
+        df['GolsA']=df['GolsA'].astype(int)
+        bets.drop('AwayTeamResult', axis=1,inplace=True)
+        bets.drop('HomeTeamResult', axis=1,inplace=True)
+        bets=pd.merge(bets,df, left_on='game_number', right_on='Jogo', how='left')
+        bets['points']=0
+        bets.loc[bets['GolsB'].isnull(),'points']=0 #
+        bets.loc[(bets['HomeTeamScore']>bets['AwayTeamScore'])&(bets['GolsA']>bets['GolsB']), 'points']=1
+        bets.loc[(bets['HomeTeamScore']<bets['AwayTeamScore'])&(bets['GolsA']<bets['GolsB']), 'points']=1
+        bets.loc[(bets['HomeTeamScore']==bets['AwayTeamScore'])&(bets['GolsA']==bets['GolsB']), 'points']=1
+        bets.loc[(bets['HomeTeamScore']==bets['GolsA'])&(bets['AwayTeamScore']==bets['GolsB']), 'points']=3
+        bets.loc[bets['GolsB']==10, 'points']=0
+        #st.dataframe(bets)
+        #st.write(bets.dtypes)
+        ranking=bets.groupby('Nome').sum().sort_values('points', ascending=False).reset_index()[['Nome','points']]
+        ranking['Posição']=np.arange(112)[1:]
+        ranking.rename(columns={"points": "Pontos"}, inplace=True)
+        st.dataframe(ranking[['Posição', 'Nome', 'Pontos']], height=1500)
