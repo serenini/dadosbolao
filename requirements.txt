@@ -5,4 +5,4 @@ matplotlib==3.6.2
 numpy
 gspread-pandas
 oauth2client<4.0.0
-streamlit-aggrid==0.0.4
+streamlit-aggrid==0.3.3 
