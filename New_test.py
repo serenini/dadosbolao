@@ -154,7 +154,7 @@ with tab_evolucao:
     plt.xlabel('Jogos decorridos')
     plt.ylabel('Pontos')
     plt.title('Evolução dos pontos')
-    plt.legend()
+    plt.legend(fontsize = 'small')
     fig_1
     fig_2=plt.figure(figsize=(5,3))
     b=-1
@@ -164,7 +164,7 @@ with tab_evolucao:
     plt.xlabel('Jogos decorridos')
     plt.ylabel('Posição')
     plt.title('Evolução da posição no ranking')
-    plt.legend()
+    plt.legend(fontsize = 'small')
     plt.yticks([0,20,40,60,80,100,111],["Lanterna","90º", "70º","50º","30º","10º","1º"])
     fig_2
 ###############################################################
