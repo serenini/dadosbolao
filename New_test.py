@@ -122,7 +122,51 @@ with tab_individual:
     bets_name_style=bets_name.style.apply(HIGHLIGHT, subset=[ 'Pontuação'], axis=1).set_properties(**{'text-align': 'center'})
     st.dataframe(data=bets_name_style.hide_index(),use_container_width=True)
 #################################################################
-whttps://stats.stackexchange.com/questions/540252/how-to-calculate-marginal-effects-with-multinomial-regression-for-survey-data-in
+#################################################################
+with tab_evolucao:
+    #Pontuação por rodada
+    total_jogos=len(bets2['Jogo'].unique())
+    A=pd.DataFrame(columns=range(total_jogos))
+    A.rename(columns={0:'Nome'}, inplace=True)
+    B=pd.DataFrame(columns=range(total_jogos))
+    B.rename(columns={0:'Nome'}, inplace=True)
+    A['Nome']=bets2.sort_values('Nome')['Nome'].unique()
+    B['Nome']=bets.sort_values('Nome')['Nome'].unique()
+    for i in range (2,total_jogos+1):
+        Ranking_parcial=bets2[bets2['game_number']<i].groupby('Nome').sum().sort_values('Nome').reset_index()[['Nome','points']]
+        Ranking_parcial_2=bets2[bets2['game_number']<i].groupby('Nome').sum().sort_values('points', ascending=False).reset_index()[['Nome','points']]
+        Ranking_parcial_2['Posição']=112-np.arange(112)[1:]
+        Ranking_parcial_2=Ranking_parcial_2.sort_values('Nome').reset_index()
+        for j in range(len(Ranking_parcial)):
+            ponto=Ranking_parcial.at[j,'points']
+            posicao=Ranking_parcial_2.at[j,'Posição']
+            A.at[j, i-1]=ponto
+            B.at[j, i-1]=posicao
+    lista_seleção=st.multiselect(label='Marque os nomes',options=list(A['Nome']))
+    list_names=[]
+    for i in lista_seleção:
+        list_names.append(list(A['Nome']).index(i))
+    fig_1=plt.figure(figsize=(5,3))
+    a=-1
+    for i in list_names:
+        a=a+1
+        plt.plot(A.iloc[i][1:], label=lista_seleção[a])
+    plt.xlabel('Jogos decorridos')
+    plt.ylabel('Pontos')
+    plt.title('Evolução dos pontos')
+    plt.legend()
+    fig_1
+    fig_2=plt.figure(figsize=(5,3))
+    b=-1
+    for i in list_names:
+        b=b+1
+        plt.plot(B.iloc[i][1:], label=lista_seleção[b])
+    plt.xlabel('Jogos decorridos')
+    plt.ylabel('Posição')
+    plt.title('Evolução da posição no ranking')
+    plt.legend()
+    plt.yticks([0,20,40,60,80,100,111],["Lanterna","90º", "70º","50º","30º","10º","1º"])
+    fig_2
 ###############################################################
 with tab_sim:
     col1, col2 = st.columns(2)
