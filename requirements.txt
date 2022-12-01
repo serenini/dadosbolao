@@ -1,8 +1,8 @@
+streamlit
 pandas
 seaborn
-streamlit
 matplotlib==3.6.2
 numpy
 gspread-pandas
 oauth2client<4.0.0
-st_aggrid
+streamlit-aggrid==0.0.4
